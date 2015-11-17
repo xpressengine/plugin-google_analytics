@@ -1,0 +1,48 @@
+{
+  "name": "xpressengine-plugin/google_analytics",
+  "description": "XpressEngine's plugin for bundle (XE)",
+  "keywords": ["xpressengine bundle", "analytics"],
+  "version": "0.0.1",
+  "support": {
+    "email": "developers@xpressengine.com"
+  },
+  "authors": [
+    {
+      "name": "XE Team",
+      "email": "developers@xpressengine.com",
+      "homepage": "http://xpressengine.io",
+      "role": "Developer"
+    }
+  ],
+  "license": "LGPL",
+  "type": "xpressengine-plugin",
+  "extra": {
+    "xpressengine": {
+      "title": "Google Analytics",
+      "component": {
+        "google_analytics/skin/google_analytics@default": {
+          "class": "Xpressengine\\Plugins\\GoogleAnalytics\\Skin",
+          "name": "설정스킨",
+          "description": "관리자 설정페이지 스킨입니다."
+        },
+        "widget/google_analytics@analytics": {
+          "class": "Xpressengine\\Plugins\\GoogleAnalytics\\AnalyticsWidget",
+          "name": "Analytics 위젯",
+          "description": "Analytics api 위젯 입니다."
+        }
+      }
+    }
+  },
+  "require": {
+    "google/apiclient": "1.1.*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0",
+    "mockery/mockery": "dev-master@dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "Xpressengine\\Plugins\\GoogleAnalytics\\": "src/"
+    }
+  }
+}

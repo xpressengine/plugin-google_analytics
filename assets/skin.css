@@ -1,0 +1,13 @@
+.info-collapse {}
+.info-collapse input {
+    background-color: #fff !important;
+}
+.info-collapse .close{
+    position:absolute;
+    bottom: 5px;
+    right: 10px;
+    display: none;
+}
+.info-collapse:hover .close{
+    display: block;
+}
