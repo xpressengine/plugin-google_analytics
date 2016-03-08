@@ -3,7 +3,7 @@ namespace Xpressengine\Plugins\GoogleAnalytics;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Presenter;
+use XePresenter;
 use Keygen;
 use Storage;
 
@@ -11,7 +11,7 @@ class ManageController extends Controller
 {
     public function __construct()
     {
-        Presenter::setSkin('google_analytics');
+        XePresenter::setSkin('google_analytics');
     }
 
     public function getSetting()
@@ -19,7 +19,7 @@ class ManageController extends Controller
         $ruleName = 'analyticsSetting';
         \Frontend::rule($ruleName, $this->getRules());
 
-        return Presenter::make('setting', [
+        return XePresenter::make('setting', [
             'setting' => app('xe.plugin.ga')->getSetting(),
             'ruleName' => $ruleName
         ]);
