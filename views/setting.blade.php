@@ -1,4 +1,4 @@
-{{ Frontend::css(app('xe.plugin.ga')->assetPath() . '/skin.css')->load() }}
+{{ XeFrontend::css(app('xe.plugin.ga')->assetPath() . '/skin.css')->load() }}
 
 @section('page_title')
     <h2>Google Analytics</h2>

@@ -2,7 +2,7 @@
 namespace Xpressengine\Plugins\GoogleAnalytics;
 
 use Xpressengine\Plugin\AbstractPlugin;
-use Frontend;
+use XeFrontend;
 use Route;
 use View;
 
@@ -55,7 +55,7 @@ class Plugin extends AbstractPlugin
             if (in_array('manage', $route->middleware()) === false) {
                 $setting = $this->getSetting();
                 if ($setting->get('trackingId')) {
-                    Frontend::html('analytics')->content(
+                    XeFrontend::html('analytics')->content(
                         $this->getTrackingCode($setting->get('trackingId'), $setting->get('domain', 'auto'))
                     )->load();
                 }

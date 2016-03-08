@@ -5,7 +5,7 @@ use Google_Client;
 use Google_Auth_AssertionCredentials;
 use Google_Service_Analytics;
 use Xpressengine\Widget\AbstractWidget;
-use Frontend;
+use XeFrontend;
 use Xpressengine\Widget\Exceptions\NotConfigurationWidgetException;
 
 class AnalyticsWidget extends AbstractWidget
@@ -27,7 +27,7 @@ class AnalyticsWidget extends AbstractWidget
 
     public function render(array $args)
     {
-        Frontend::js('https://www.google.com/jsapi')->appendTo('head')->load();
+        XeFrontend::js('https://www.google.com/jsapi')->appendTo('head')->load();
         if (isset($args['type']) !== true) {
             throw new \Exception('Must need type argument');
         }

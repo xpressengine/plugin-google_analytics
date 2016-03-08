@@ -17,7 +17,7 @@ class ManageController extends Controller
     public function getSetting()
     {
         $ruleName = 'analyticsSetting';
-        \Frontend::rule($ruleName, $this->getRules());
+        \XeFrontend::rule($ruleName, $this->getRules());
 
         return Presenter::make('setting', [
             'setting' => app('xe.plugin.ga')->getSetting(),
