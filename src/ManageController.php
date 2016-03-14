@@ -11,7 +11,7 @@ class ManageController extends Controller
 {
     public function __construct()
     {
-        XePresenter::setModule('google_analytics');
+        XePresenter::setSkinTargtId('google_analytics');
     }
 
     public function getSetting()
