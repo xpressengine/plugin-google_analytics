@@ -19,6 +19,7 @@
   "extra": {
     "xpressengine": {
       "title": "Google Analytics",
+      "icon": "icon.png",
       "component": {
         "google_analytics/skin/google_analytics@default": {
           "class": "Xpressengine\\Plugins\\GoogleAnalytics\\Skin",
