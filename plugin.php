@@ -46,7 +46,7 @@ class Plugin extends AbstractPlugin
 
     private function registerEvent()
     {
-        intercept('Presenter@make', 'googleAnalytics.addScript', function($target, $id, $data = [], $mergeData = [], $html = true, $api = false) {
+        intercept('XePresenter@make', 'googleAnalytics.addScript', function($target, $id, $data = [], $mergeData = [], $html = true, $api = false) {
             $app = app();
             $router = $app['router'];
 
