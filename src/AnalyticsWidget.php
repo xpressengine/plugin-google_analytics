@@ -33,8 +33,9 @@ class AnalyticsWidget extends AbstractWidget
         $this->setting = app('xe.plugin.ga')->getSetting();
     }
 
-    public function render(array $args)
+    public function render()
     {
+		$args = $this->config;
         XeFrontend::js('https://www.google.com/jsapi')->appendTo('head')->load();
         if (isset($args['type']) !== true) {
             throw new \Exception('Must need type argument');
