@@ -74,9 +74,9 @@ class Setting
     public function getKeyFile()
     {
         if (!$this->file && $this->get('uuid')) {
-            $files = $this->storage->getsByTargetId($this->get('uuid'));
+            $files = File::getByFileable($this->get('uuid'));
 
-            $this->file = current($files);
+            $this->file = $files->first();
         }
 
         return $this->file;
@@ -84,14 +84,14 @@ class Setting
 
     public function setKeyFile(File $file)
     {
-        $this->storage->removeAll($this->get('uuid'));
+        $this->storage->unBindAll($this->get('uuid'));
         $this->storage->bind($this->get('uuid'), $file);
     }
 
     public function getKeyContent()
     {
         if ($file = $this->getKeyFile()) {
-            return $this->storage->read($file);
+            return $file->getContent();
         }
 
         return null;

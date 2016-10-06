@@ -22,12 +22,7 @@ class AnalyticsWidget extends AbstractWidget
      * @var Setting
      */
     protected $setting;
-
-    public static function boot()
-    {
-        //
-    }
-
+    
     protected function init()
     {
         $this->setting = app('xe.plugin.ga')->getSetting();
@@ -35,9 +30,10 @@ class AnalyticsWidget extends AbstractWidget
 
     public function render()
     {
-		$args = $this->config;
+        // dailyVisits, visitSources, browsers, pageViews
+        $type = array_get($this->config, 'type');
         XeFrontend::js('https://www.google.com/jsapi')->appendTo('head')->load();
-        if (isset($args['type']) !== true) {
+        if (!$type) {
             throw new \Exception('Must need type argument');
         }
 
@@ -45,22 +41,14 @@ class AnalyticsWidget extends AbstractWidget
             throw new NotConfigurationWidgetException;
         }
 
-        // dailyVisits, visitSources, browsers, pageViews
-        $type = $args['type'];
-
         $class = __NAMESPACE__ . '\\Widgets\\' . ucfirst($type);
         if (class_exists(ucfirst($class)) !== true) {
             throw new \Exception("Unknown type [{$type}]");
         }
 
         /** @var \Xpressengine\Plugins\GoogleAnalytics\Widgets\AbstractAnalytics $widget */
-        $widget = new $class($this->getAnalytics(), $this->setting->get('profileId'), $args);
+        $widget = new $class($this->getAnalytics(), $this->setting->get('profileId'), $this->config);
         return $widget->render();
-    }
-
-    public function getCodeCreationForm()
-    {
-        //
     }
 
     private function getAnalytics()

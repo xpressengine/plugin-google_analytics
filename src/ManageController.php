@@ -12,8 +12,8 @@ namespace Xpressengine\Plugins\GoogleAnalytics;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use XePresenter;
-use Keygen;
-use Storage;
+use XeStorage;
+use XeDB;
 
 class ManageController extends Controller
 {
@@ -53,12 +53,19 @@ class ManageController extends Controller
             'trackingId',
             'domain',
         ]);
-        $setting->set($inputs);
 
-        if ($request->file('keyFile') !== null) {
-            $file = Storage::upload($request->file('keyFile'), 'google/analytics');
-            $setting->setKeyFile($file);
+        XeDB::beginTransaction();
+        try {
+            $setting->set($inputs);
+
+            if ($request->file('keyFile') !== null) {
+                $file = XeStorage::upload($request->file('keyFile'), 'google/analytics');
+                $setting->setKeyFile($file);
+            }
+        } catch (\Exception $e) {
+            XeDB::rollBack();
         }
+        XeDB::commit();
 
         return redirect()->route('manage.google_analytics.edit');
     }
