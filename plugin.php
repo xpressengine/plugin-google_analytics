@@ -9,6 +9,7 @@
 
 namespace Xpressengine\Plugins\GoogleAnalytics;
 
+use Illuminate\Contracts\Validation\Factory;
 use Xpressengine\Plugin\AbstractPlugin;
 use XeFrontend;
 use Route;
@@ -26,6 +27,11 @@ class Plugin extends AbstractPlugin
         $this->registerEvent();
 
         View::addNamespace('ga', __DIR__ . '/views');
+
+        app(Factory::class)->extend('p12', function ($attr, $value) {
+            return 'p12' === $value->getClientOriginalExtension();
+        }, 'The :attribute must be a file of type: p12.');
+
     }
 
     public function activate($installedVersion = null)
@@ -54,12 +60,9 @@ class Plugin extends AbstractPlugin
 
     private function registerEvent()
     {
-        intercept('XePresenter@make', 'googleAnalytics.addScript', function($target, $id, $data = [], $mergeData = [], $html = true, $api = false) {
-            $app = app();
-            $router = $app['router'];
-
+        intercept('Presenter@make', 'googleAnalytics.addScript', function($target, $id, $data = [], $mergeData = [], $html = true, $api = false) {
             /** @var \Illuminate\Routing\Route $route */
-            $route = $router->current();
+            $route = app('router')->current();
             if (in_array('manage', $route->middleware()) === false) {
                 $setting = $this->getSetting();
                 if ($setting->get('trackingId')) {

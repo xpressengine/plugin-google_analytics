@@ -39,10 +39,6 @@ class ManageController extends Controller
 
         $rules = $this->getRules();
 
-        if ($setting->getKeyFile() === null) {
-            $rules = array_merge($rules, ['keyFile' => 'Required']);
-        }
-
         $this->validate($request, $rules);
 
         $inputs = $request->only([
@@ -73,11 +69,10 @@ class ManageController extends Controller
     private function getRules()
     {
         return [
-            'projectName' => 'Required',
-            'accountEmail' => 'Required|Email',
-            'clientId' => 'Required',
-            'profileId' => 'Required|Numeric',
-            'trackingId' => 'Required'
+            'accountEmail' => 'email',
+            'profileId' => 'numeric',
+            'keyFile' => 'p12',
+            'trackingId' => 'required'
         ];
     }
 }

@@ -22,7 +22,7 @@
       "icon": "icon.png",
       "component": {
         "google_analytics/skin/google_analytics@default": {
-          "class": "Xpressengine\\Plugins\\GoogleAnalytics\\Skin",
+          "class": "Xpressengine\\Plugins\\GoogleAnalytics\\Skins\\ManagerSkin",
           "name": "설정스킨",
           "description": "관리자 설정페이지 스킨입니다."
         },
@@ -30,6 +30,11 @@
           "class": "Xpressengine\\Plugins\\GoogleAnalytics\\AnalyticsWidget",
           "name": "Analytics 위젯",
           "description": "Analytics api 위젯 입니다."
+        },
+        "widget/google_analytics@analytics/skin/google_analytics@default": {
+          "class": "Xpressengine\\Plugins\\GoogleAnalytics\\Skins\\AnalyticsWidgetSkin",
+          "name": "Analytics 위젯 기본 스킨",
+          "description": "Analytics 위젯 기본 스킨입니다."
         }
       }
     }

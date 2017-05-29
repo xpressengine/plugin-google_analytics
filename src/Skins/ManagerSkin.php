@@ -7,12 +7,12 @@
  * @link        https://xpressengine.io
  */
 
-namespace Xpressengine\Plugins\GoogleAnalytics;
+namespace Xpressengine\Plugins\GoogleAnalytics\Skins;
 
 use View;
 use Xpressengine\Skin\AbstractSkin;
 
-class Skin extends AbstractSkin
+class ManagerSkin extends AbstractSkin
 {
     public function render()
     {

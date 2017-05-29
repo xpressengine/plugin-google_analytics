@@ -22,6 +22,8 @@ class AnalyticsWidget extends AbstractWidget
      * @var Setting
      */
     protected $setting;
+
+    protected $types = ['dailyVisits', 'visitSources', 'browsers', 'pageViews'];
     
     protected function init()
     {
@@ -30,11 +32,9 @@ class AnalyticsWidget extends AbstractWidget
 
     public function render()
     {
-        // dailyVisits, visitSources, browsers, pageViews
         $type = array_get($this->config, 'type');
-        XeFrontend::js('https://www.google.com/jsapi')->appendTo('head')->load();
-        if (!$type) {
-            throw new \Exception('Must need type argument');
+        if (!in_array($type, $this->types)) {
+            throw new \Exception("Unknown widget type [{$type}]");
         }
 
         if ($this->checkConfiguration() !== true) {
@@ -46,9 +46,13 @@ class AnalyticsWidget extends AbstractWidget
             throw new \Exception("Unknown type [{$type}]");
         }
 
+        XeFrontend::js('https://www.google.com/jsapi')->appendTo('head')->load();
         /** @var \Xpressengine\Plugins\GoogleAnalytics\Widgets\AbstractAnalytics $widget */
         $widget = new $class($this->getAnalytics(), $this->setting->get('profileId'), $this->config);
-        return $widget->render();
+
+        return $this->renderSkin([
+            'widget' => $widget
+        ]);
     }
 
     private function getAnalytics()
@@ -71,10 +75,14 @@ class AnalyticsWidget extends AbstractWidget
 
     private function checkConfiguration()
     {
-        return $this->setting->get('projectName')
-            && $this->setting->get('accountEmail')
+        return $this->setting->get('accountEmail')
             && $this->setting->get('clientId')
             && $this->setting->get('profileId')
             && $this->setting->getKeyContent();
+    }
+
+    public function renderSetting(array $args = [])
+    {
+        return view('ga::widgetForm', ['types' => $this->types]);
     }
 }
