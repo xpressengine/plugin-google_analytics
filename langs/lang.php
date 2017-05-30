@@ -1,21 +1,10 @@
 <?php
 
 return [
-    'projectName' => [
-        'ko' => '프로젝트명',
-        'en' => 'Project name',
+    'tracking' => [
+        'ko' => '추적',
+        'en' => 'Tracking',
     ],
-
-    'accountEmail' => [
-        'ko' => '이메일 주소',
-        'en' => 'E-mail',
-    ],
-
-    'clientId' => [
-        'ko' => '클라이언트 ID',
-        'en' => 'Client ID',
-    ],
-
     'profileId' => [
         'ko' => '프로필 ID',
         'en' => 'Profile ID',
