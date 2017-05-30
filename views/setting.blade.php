@@ -14,19 +14,19 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="panel">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Tracking</h3>
+                    <h3 class="panel-title">{{ xe_trans('ga::tracking') }}</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>{{ xe_trans('ga:trackingId') }}</label>
+                                <label>{{ xe_trans('ga::trackingId') }}</label>
                                 <input type="text" class="form-control" name="trackingId" value="{{ $setting->get('trackingId') ?: Input::old('trackingId') }}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>{{ xe_trans('ga:trackingDomain') }} ({{ xe_trans('ga:optional') }})</label>
+                                <label>{{ xe_trans('ga::trackingDomain') }} ({{ xe_trans('ga::optional') }})</label>
                                 <input type="text" class="form-control" name="domain" value="{{ $setting->get('domain') ?: Input::old('domain') }}">
                             </div>
                         </div>
@@ -36,19 +36,19 @@
 
             <div class="panel">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Widget</h3>
+                    <h3 class="panel-title">{{ xe_trans('xe::widget') }}</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>{{ xe_trans('ga:profileId') }}</label>
+                                <label>{{ xe_trans('ga::profileId') }}</label>
                                 <input type="text" class="form-control" name="profileId" value="{{ $setting->get('profileId') ?: Input::old('profileId') }}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group" style="position: relative;">
-                                <label>{{ xe_trans('ga:keyFile') }} (.json)</label>
+                                <label>{{ xe_trans('ga::keyFile') }} (.json)</label>
                                 <div class="{{ $setting->getKeyFile() ? 'collapse' : '' }}" id="__xe_file_input">
                                     <input type="file" class="form-control" name="keyFile">
                                 </div>
@@ -66,7 +66,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">{{ xe_trans('ga:save') }}</button>
+            <button type="submit" class="btn btn-primary">{{ xe_trans('xe::save') }}</button>
         </form>
     </div>
 </div>
