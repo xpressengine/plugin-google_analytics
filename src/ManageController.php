@@ -69,9 +69,9 @@ class ManageController extends Controller
     private function getRules()
     {
         return [
-            'accountEmail' => 'email',
+//            'accountEmail' => 'email',
             'profileId' => 'numeric',
-            'keyFile' => 'p12',
+            'keyFile' => 'ga_json',
             'trackingId' => 'required'
         ];
     }

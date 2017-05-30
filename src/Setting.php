@@ -13,6 +13,7 @@ use Xpressengine\Config\ConfigManager;
 use Xpressengine\Keygen\Keygen;
 use Xpressengine\Storage\File;
 use Xpressengine\Storage\Storage;
+use XeStorage;
 
 class Setting
 {
@@ -74,7 +75,7 @@ class Setting
     public function getKeyFile()
     {
         if (!$this->file && $this->get('uuid')) {
-            $files = File::getByFileable($this->get('uuid'));
+            $files = XeStorage::fetchByFileable($this->get('uuid'));
 
             $this->file = $files->first();
         }
@@ -84,7 +85,7 @@ class Setting
 
     public function setKeyFile(File $file)
     {
-        $this->storage->unBindAll($this->get('uuid'));
+        $this->storage->unBindAll($this->get('uuid'), true);
         $this->storage->bind($this->get('uuid'), $file);
     }
 

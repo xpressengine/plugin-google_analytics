@@ -28,9 +28,9 @@ class Plugin extends AbstractPlugin
 
         View::addNamespace('ga', __DIR__ . '/views');
 
-        app(Factory::class)->extend('p12', function ($attr, $value) {
-            return 'p12' === $value->getClientOriginalExtension();
-        }, 'The :attribute must be a file of type: p12.');
+        app(Factory::class)->extend('ga_json', function ($attr, $value) {
+            return 'json' === $value->getClientOriginalExtension();
+        }, 'The :attribute must be a file of type: json.');
 
     }
 

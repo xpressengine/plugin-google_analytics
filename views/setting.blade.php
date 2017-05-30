@@ -42,45 +42,23 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>{{ xe_trans('ga:accountEmail') }}</label>
-                                <input type="email" class="form-control" name="accountEmail" value="{{ $setting->get('accountEmail') ?: Input::old('accountEmail') }}">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
                                 <label>{{ xe_trans('ga:profileId') }}</label>
                                 <input type="text" class="form-control" name="profileId" value="{{ $setting->get('profileId') ?: Input::old('profileId') }}">
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label>{{ xe_trans('ga:clientId') }}</label>
-                                <input type="text" class="form-control" name="clientId" value="{{ $setting->get('clientId') ?: Input::old('clientId') }}">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>{{ xe_trans('ga:projectName') }} ({{ xe_trans('ga:optional') }})</label>
-                                <input type="text" class="form-control" name="projectName" value="{{ $setting->get('projectName') ?: Input::old('projectName') }}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
                             <div class="form-group" style="position: relative;">
-                                <label>{{ xe_trans('ga:keyFile') }} (.p12)</label>
+                                <label>{{ xe_trans('ga:keyFile') }} (.json)</label>
                                 <div class="{{ $setting->getKeyFile() ? 'collapse' : '' }}" id="__xe_file_input">
                                     <input type="file" class="form-control" name="keyFile">
                                 </div>
                                 @if($setting->getKeyFile())
-                                <div class="collapse in info-collapse" id="__xe_file_info">
-                                    <input type="text" class="form-control" readonly value="{{ $setting->getKeyFile()->clientname }}">
-                                    <span id="__xe_btn_remove_key_file" class="close">
-                                        <i class="glyphicon glyphicon-remove"></i>
-                                    </span>
-                                </div>
+                                    <div class="collapse in info-collapse" id="__xe_file_info">
+                                        <input type="text" class="form-control" readonly value="{{ $setting->getKeyFile()->clientname }}">
+                                        <span id="__xe_btn_remove_key_file" class="close">
+                                            <i class="xi-close-min"></i>
+                                        </span>
+                                    </div>
                                 @endif
                             </div>
                         </div>
