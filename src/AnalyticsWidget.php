@@ -62,6 +62,8 @@ class AnalyticsWidget extends AbstractWidget
     {
         $client = new Google_Client();
         $this->setAuthConfig($client, $this->setting->getKeyContent());
+
+        // scopes: https://developers.google.com/identity/protocols/googlescopes
         $client->addScope(['https://www.googleapis.com/auth/analytics']);
 
         return new Google_Service_Analytics($client);
