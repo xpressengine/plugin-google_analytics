@@ -14,6 +14,7 @@ use Xpressengine\Plugin\AbstractPlugin;
 use XeFrontend;
 use Route;
 use View;
+use Xpressengine\Translation\Translator;
 
 class Plugin extends AbstractPlugin
 {
@@ -32,6 +33,7 @@ class Plugin extends AbstractPlugin
             return 'json' === $value->getClientOriginalExtension();
         }, 'The :attribute must be a file of type: json.');
 
+        Translator::alias('google_analytics', 'ga');
     }
 
     public function activate($installedVersion = null)
