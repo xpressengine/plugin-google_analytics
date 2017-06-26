@@ -19,7 +19,7 @@ class VisitSources extends AnalyticsWidgetSkin
 {
     public function render()
     {
-        return view('ga::widget.sources', [
+        return view('ga::widgets.sources', [
             'days' => array_get($this->data, 'days'),
             'limit' => array_get($this->data, 'limit'),
             'title' => $this->getAttribute('title'),

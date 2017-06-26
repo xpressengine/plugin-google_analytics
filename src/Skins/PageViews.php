@@ -19,7 +19,7 @@ class PageViews extends AnalyticsWidgetSkin
 {
     public function render()
     {
-        return view('ga::widget.pv', [
+        return view('ga::widgets.pv', [
             'days' => array_get($this->data, 'days'),
             'limit' => array_get($this->data, 'limit'),
             'title' => $this->getAttribute('title'),

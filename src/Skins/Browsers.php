@@ -19,7 +19,7 @@ class Browsers extends AnalyticsWidgetSkin
 {
     public function render()
     {
-        return view('ga::widget.browsers', [
+        return view('ga::widgets.browsers', [
             'days' => array_get($this->data, 'days'),
             'limit' => array_get($this->data, 'limit'),
             'title' => $this->getAttribute('title'),

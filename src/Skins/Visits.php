@@ -18,7 +18,7 @@ class Visits extends AnalyticsWidgetSkin
 {
     public function render()
     {
-        return view('ga::widget.visit', [
+        return view('ga::widgets.visit', [
             'unit' => array_get($this->data, 'unit'),
             'days' => array_get($this->data, 'days'),
             'title' => $this->getAttribute('title'),
