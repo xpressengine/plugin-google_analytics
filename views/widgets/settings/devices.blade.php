@@ -23,7 +23,7 @@
             $.ajax({
                 url: '{{ route('plugin.ga.api.device') }}',
                 type: 'get',
-                data: {startdate: '{{ $startdate }}'},
+                data: {days: '{{ $days }}'},
                 dataType: 'json',
                 success: function (response) {
                     draw(response);

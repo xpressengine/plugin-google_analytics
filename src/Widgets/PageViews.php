@@ -11,20 +11,26 @@ namespace Xpressengine\Plugins\GoogleAnalytics\Widgets;
 
 class PageViews extends AbstractAnalytics
 {
+    protected $defaults = [
+        'startdate' => '7daysAgo',
+        'limit' => 5,
+    ];
+
     public function render()
     {
         $config = $this->setting();
-        $days = array_get($config, 'days', 30);
-        $limit = array_get($config, 'limit', 5);
 
         return $this->renderSkin([
-            'days' => $days,
-            'limit' => $limit,
+            'startdate' => array_get($config, 'startdate', $this->defaults['startdate']),
+            'limit' => array_get($config, 'limit', $this->defaults['limit']),
         ]);
     }
 
     public function renderSetting(array $args = [])
     {
-
+        return view('ga::widgets.settings.sources', [
+            'startdate' => array_get($args, 'startdate', $this->defaults['startdate']),
+            'limit' => array_get($args, 'limit', $this->defaults['limit']),
+        ]);
     }
 }

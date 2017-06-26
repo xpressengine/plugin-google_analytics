@@ -21,11 +21,12 @@ class ApiController extends Controller
 {
     public function visit(Request $request, Handler $handler)
     {
-        $days = $request->get('days', 30);
+        $startdate = $request->get('startdate', '7daysAgo');
+        $enddate = $request->get('enddate', 'today');
 
         $rows = $handler->getVisitData(
-            $days . 'daysAgo',
-            'today'
+            $startdate,
+            $enddate
         );
 
         return response()->json($rows);
@@ -33,12 +34,13 @@ class ApiController extends Controller
 
     public function browser(Request $request, Handler $handler)
     {
-        $days = $request->get('days', 30);
+        $startdate = $request->get('startdate', '7daysAgo');
+        $enddate = $request->get('enddate', 'today');
         $limit = $request->get('limit', 5);
 
         $rows = $handler->getBrowserData(
-            $days . 'daysAgo',
-            'today',
+            $startdate,
+            $enddate,
             $limit
         );
 
@@ -47,12 +49,13 @@ class ApiController extends Controller
 
     public function source(Request $request, Handler $handler)
     {
-        $days = $request->get('days', 30);
+        $startdate = $request->get('startdate', '7daysAgo');
+        $enddate = $request->get('enddate', 'today');
         $limit = $request->get('limit', 5);
 
         $rows = $handler->getVisitSourceData(
-            $days . 'daysAgo',
-            'today',
+            $startdate,
+            $enddate,
             $limit
         );
 
@@ -61,12 +64,13 @@ class ApiController extends Controller
 
     public function pv(Request $request, Handler $handler)
     {
-        $days = $request->get('days', 30);
+        $startdate = $request->get('startdate', '7daysAgo');
+        $enddate = $request->get('enddate', 'today');
         $limit = $request->get('limit', 5);
 
         $rows = $handler->getPageViewData(
-            $days . 'daysAgo',
-            'today',
+            $startdate,
+            $enddate,
             $limit
         );
 
@@ -75,11 +79,12 @@ class ApiController extends Controller
 
     public function device(Request $request, Handler $handler)
     {
-        $days = $request->get('days', 30);
+        $startdate = $request->get('startdate', '7daysAgo');
+        $enddate = $request->get('enddate', 'today');
 
         $rows = $handler->getDeviceData(
-            $days . 'daysAgo',
-            'today'
+            $startdate,
+            $enddate
         );
 
         return response()->json($rows);

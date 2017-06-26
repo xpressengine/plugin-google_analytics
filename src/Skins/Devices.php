@@ -20,7 +20,7 @@ class Devices extends AnalyticsWidgetSkin
     public function render()
     {
         return view('ga::widgets.devices', [
-            'days' => array_get($this->data, 'days'),
+            'startdate' => array_get($this->data, 'startdate'),
             'title' => $this->getAttribute('title'),
         ]);
     }

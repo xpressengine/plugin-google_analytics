@@ -17,7 +17,6 @@ namespace Xpressengine\Plugins\GoogleAnalytics;
 use Google_Client;
 use Google_Service_Analytics;
 use Illuminate\Foundation\Application;
-use LogicException;
 use Xpressengine\Widget\Exceptions\NotConfigurationWidgetException;
 
 class Handler

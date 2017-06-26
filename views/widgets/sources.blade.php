@@ -23,7 +23,7 @@
             $.ajax({
                 url: '{{ route('plugin.ga.api.source') }}',
                 type: 'get',
-                data: {days: '{{ $days }}', limit: '{{ $limit }}'},
+                data: {startdate: '{{ $startdate }}', limit: '{{ $limit }}'},
                 dataType: 'json',
                 success: function (response) {
                     draw(response);

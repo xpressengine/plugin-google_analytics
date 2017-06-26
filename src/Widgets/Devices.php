@@ -17,19 +17,23 @@ namespace Xpressengine\Plugins\GoogleAnalytics\Widgets;
 
 class Devices extends AbstractAnalytics
 {
+    protected $defaults = [
+        'startdate' => '7daysAgo',
+    ];
 
-    /**
-     * Get the evaluated contents of the object.
-     *
-     * @return string
-     */
     public function render()
     {
         $config = $this->setting();
-        $days = array_get($config, 'days', 30);
 
         return $this->renderSkin([
-            'days' => $days,
+            'startdate' => array_get($config, 'startdate', $this->defaults['startdate']),
+        ]);
+    }
+
+    public function renderSetting(array $args = [])
+    {
+        return view('ga::widgets.settings.sources', [
+            'startdate' => array_get($args, 'startdate', $this->defaults['startdate']),
         ]);
     }
 }
