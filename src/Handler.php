@@ -115,10 +115,14 @@ class Handler
 
         if (!$this->analytics) {
             $client = new Google_Client();
-            $this->setAuthConfig($client, $this->getSetting()->getKeyContent());
+            $client->setAuthConfig(json_decode($this->getSetting()->getKeyContent(), true));
 
             // scopes: https://developers.google.com/identity/protocols/googlescopes
-            $client->addScope(['https://www.googleapis.com/auth/analytics']);
+            $client->addScope(Google_Service_Analytics::ANALYTICS_READONLY);
+
+            if ($client->isAccessTokenExpired()) {
+                $client->fetchAccessTokenWithAssertion();
+            }
 
             $this->analytics = new Google_Service_Analytics($client);
         }
@@ -130,39 +134,6 @@ class Handler
     {
         return $this->getSetting('profileId')
             && $this->getSetting()->getKeyContent();
-    }
-
-    protected function setAuthConfig(Google_Client $client, $json)
-    {
-        if (!$config = json_decode($json, true)) {
-            throw new LogicException('invalid json for auth config');
-        }
-
-        $key = isset($config['installed']) ? 'installed' : 'web';
-        if (isset($config['type']) && $config['type'] == 'service_account') {
-            // application default credentials
-            $client->useApplicationDefaultCredentials();
-
-            // set the information from the config
-            $client->setClientId($config['client_id']);
-            $client->setConfig('client_email', $config['client_email']);
-            $client->setConfig('signing_key', $config['private_key']);
-            $client->setConfig('signing_algorithm', 'HS256');
-        } elseif (isset($config[$key])) {
-            // old-style
-            $client->setClientId($config[$key]['client_id']);
-            $client->setClientSecret($config[$key]['client_secret']);
-            if (isset($config[$key]['redirect_uris'])) {
-                $client->setRedirectUri($config[$key]['redirect_uris'][0]);
-            }
-        } else {
-            // new-style
-            $client->setClientId($config['client_id']);
-            $client->setClientSecret($config['client_secret']);
-            if (isset($config['redirect_uris'])) {
-                $client->setRedirectUri($config['redirect_uris'][0]);
-            }
-        }
     }
 
     public function getSetting($key = null)
