@@ -14,7 +14,6 @@
 </div>
 
 <script type="text/javascript">
-    google.charts.load('current', {packages:["corechart"]});
     $(function () {
         google.charts.setOnLoadCallback(function () {
             dataLoad();

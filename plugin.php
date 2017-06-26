@@ -82,7 +82,7 @@ class Plugin extends AbstractPlugin
             if (in_array('settings', $route->middleware()) === false) {
                 $setting = $this->getSetting();
                 if ($setting->get('trackingId')) {
-                    XeFrontend::html('analytics')->content(
+                    XeFrontend::html('ga:tracking')->content(
                         $this->getTrackingCode($setting->get('trackingId'), $setting->get('domain', 'auto'))
                     )->load();
                 }
