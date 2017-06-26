@@ -28,43 +28,53 @@
         },
         "widget/google_analytics@visits": {
           "class": "Xpressengine\\Plugins\\GoogleAnalytics\\Widgets\\Visits",
-          "name": "기간별 방문자 위젯",
+          "name": "GA 기간별 방문자 위젯",
           "description": "기간별 방문자 위젯 입니다."
         },
         "widget/google_analytics@visits/skin/google_analytics@default": {
           "class": "Xpressengine\\Plugins\\GoogleAnalytics\\Skins\\Visits",
-          "name": "기간별 방문자 위젯 기본 스킨",
+          "name": "GA 기간별 방문자 위젯 기본 스킨",
           "description": "기간별 방문자 위젯 기본 스킨입니다."
         },
         "widget/google_analytics@browsers": {
           "class": "Xpressengine\\Plugins\\GoogleAnalytics\\Widgets\\Browsers",
-          "name": "브라우저별 방문자 위젯",
+          "name": "GA 브라우저별 방문자 위젯",
           "description": "브라우저별 방문자 위젯 입니다."
         },
         "widget/google_analytics@browsers/skin/google_analytics@default": {
           "class": "Xpressengine\\Plugins\\GoogleAnalytics\\Skins\\Browsers",
-          "name": "브라우저별 방문자 위젯 기본 스킨",
+          "name": "GA 브라우저별 방문자 위젯 기본 스킨",
           "description": "브라우저별 방문자 위젯 기본 스킨입니다."
         },
         "widget/google_analytics@sources": {
           "class": "Xpressengine\\Plugins\\GoogleAnalytics\\Widgets\\VisitSources",
-          "name": "유입경로별 방문자 위젯",
+          "name": "GA 유입경로별 방문자 위젯",
           "description": "유입경로별 방문자 위젯 입니다."
         },
         "widget/google_analytics@sources/skin/google_analytics@default": {
           "class": "Xpressengine\\Plugins\\GoogleAnalytics\\Skins\\VisitSources",
-          "name": "유입경로별 방문자 위젯 기본 스킨",
+          "name": "GA 유입경로별 방문자 위젯 기본 스킨",
           "description": "유입경로별 방문자 위젯 기본 스킨입니다."
         },
         "widget/google_analytics@pv": {
           "class": "Xpressengine\\Plugins\\GoogleAnalytics\\Widgets\\PageViews",
-          "name": "페이지 뷰 위젯",
+          "name": "GA 페이지 뷰 위젯",
           "description": "페이지 뷰 위젯 입니다."
         },
         "widget/google_analytics@pv/skin/google_analytics@default": {
           "class": "Xpressengine\\Plugins\\GoogleAnalytics\\Skins\\PageViews",
-          "name": "페이지 뷰 위젯 기본 스킨",
+          "name": "GA 페이지 뷰 위젯 기본 스킨",
           "description": "페이지 뷰 위젯 기본 스킨입니다."
+        },
+        "widget/google_analytics@device": {
+          "class": "Xpressengine\\Plugins\\GoogleAnalytics\\Widgets\\Devices",
+          "name": "GA 방문자 접속 기기 위젯",
+          "description": "방문자 접속 기기 위젯 입니다."
+        },
+        "widget/google_analytics@device/skin/google_analytics@default": {
+          "class": "Xpressengine\\Plugins\\GoogleAnalytics\\Skins\\Devices",
+          "name": "GA 방문자 접속 기기 위젯 기본 스킨",
+          "description": "방문자 접속 기기 위젯 기본 스킨입니다."
         }
       }
     }

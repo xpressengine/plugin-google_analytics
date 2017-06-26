@@ -72,4 +72,16 @@ class ApiController extends Controller
 
         return response()->json($rows);
     }
+
+    public function device(Request $request, Handler $handler)
+    {
+        $days = $request->get('days', 30);
+
+        $rows = $handler->getDeviceData(
+            $days . 'daysAgo',
+            'today'
+        );
+
+        return response()->json($rows);
+    }
 }

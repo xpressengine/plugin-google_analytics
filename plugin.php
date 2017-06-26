@@ -69,6 +69,7 @@ class Plugin extends AbstractPlugin
                 Route::get('browser', ['as' => 'plugin.ga.api.browser', 'uses' => 'ApiController@browser']);
                 Route::get('source', ['as' => 'plugin.ga.api.source', 'uses' => 'ApiController@source']);
                 Route::get('pv', ['as' => 'plugin.ga.api.pv', 'uses' => 'ApiController@pv']);
+                Route::get('device', ['as' => 'plugin.ga.api.device', 'uses' => 'ApiController@device']);
             });
         }, ['namespace' => __NAMESPACE__]);
     }

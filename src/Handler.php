@@ -102,6 +102,21 @@ class Handler
         return $rows;
     }
 
+    public function getDeviceData($startDate, $endDate)
+    {
+        $data = $this->getAnalytics()->data_ga->get(
+            $this->getGaId(),
+            $startDate,
+            $endDate,
+            'ga:visits',
+            ['dimensions' => 'ga:deviceCategory', 'sort' => '-ga:deviceCategory']
+        );
+
+        $rows = $data->getRows() ?: [];
+
+        return $rows;
+    }
+
     protected function getGaId()
     {
         return 'ga:' . $this->getSetting('profileId');
