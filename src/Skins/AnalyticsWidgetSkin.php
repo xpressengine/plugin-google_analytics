@@ -17,7 +17,7 @@ class AnalyticsWidgetSkin extends AbstractSkin
     {
         parent::__construct($config);
 
-        XeFrontend::js('https://www.google.com/jsapi')->appendTo('head')->load();
+        XeFrontend::js('https://www.gstatic.com/charts/loader.js')->appendTo('head')->load();
     }
 
     public function getAttribute($name)

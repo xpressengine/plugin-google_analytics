@@ -14,9 +14,10 @@
 </div>
 
 <script type="text/javascript">
-    google.load("visualization", "1", {packages:["corechart"]});
+//    google.load("visualization", "1", {packages:["corechart"]});
+    google.charts.load('current', {packages:["corechart"]});
     $(function () {
-        google.setOnLoadCallback(function () {
+        google.charts.setOnLoadCallback(function () {
             dataLoad();
         });
 
