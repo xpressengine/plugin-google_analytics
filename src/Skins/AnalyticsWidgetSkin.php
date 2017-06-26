@@ -8,14 +8,20 @@
 
 namespace Xpressengine\Plugins\GoogleAnalytics\Skins;
 
+use XeFrontend;
 use Xpressengine\Skin\AbstractSkin;
 
 class AnalyticsWidgetSkin extends AbstractSkin
 {
-    public function render()
+    public function __construct($config = null)
     {
-        $widget = array_get($this->data, 'widget');
+        parent::__construct($config);
 
-        return $widget->render();
+        XeFrontend::js('https://www.google.com/jsapi')->appendTo('head')->load();
+    }
+
+    public function getAttribute($name)
+    {
+        return array_get($this->setting(), "@attributes.{$name}");
     }
 }

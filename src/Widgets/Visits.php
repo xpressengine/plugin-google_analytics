@@ -9,22 +9,33 @@
 
 namespace Xpressengine\Plugins\GoogleAnalytics\Widgets;
 
-class PageViews extends AbstractAnalytics
+class Visits extends AbstractAnalytics
 {
     public function render()
     {
+        /*
+         * 설정항목:
+         *  일/월/년 단위 설정 (day/month/year)
+         *  기간설정 (start ~ end) widget 에서는 start 만 받고 오늘까지로?
+         */
         $config = $this->setting();
+        $unit = array_get($config, 'unit', 'day');
         $days = array_get($config, 'days', 30);
-        $limit = array_get($config, 'limit', 5);
 
         return $this->renderSkin([
+            'unit' => $unit,
             'days' => $days,
-            'limit' => $limit,
         ]);
     }
 
     public function renderSetting(array $args = [])
     {
-
+//        return view('ga::widgetForm', [
+//            'types' => $this->types,
+//            'selected' => Arr::get($args, 'type'),
+//            'prettyType' => function ($type) {
+//                return ucwords(str_replace('_', ' ', Str::snake($type)));
+//            }
+//        ]);
     }
 }

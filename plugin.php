@@ -24,15 +24,19 @@ class Plugin extends AbstractPlugin
             return $this;
         }, true);
 
+        app()->singleton('xe.plugin.ga.handler', function ($app) {
+            return new Handler($app, $this->getSetting());
+        }, true);
+
         $this->registerRoute();
         $this->registerEvent();
 
-        View::addNamespace('ga', __DIR__ . '/views');
 
         app(Factory::class)->extend('ga_json', function ($attr, $value) {
             return 'json' === $value->getClientOriginalExtension();
         }, 'The :attribute must be a file of type: json.');
 
+        View::addNamespace('ga', __DIR__ . '/views');
         Translator::alias('google_analytics', 'ga');
     }
 
@@ -57,6 +61,15 @@ class Plugin extends AbstractPlugin
                 'as' => 'manage.google_analytics.update',
                 'uses' => 'ManageController@postSetting'
             ]);
+        }, ['namespace' => __NAMESPACE__]);
+
+        Route::fixed('ga', function () {
+            Route::group(['prefix' => 'api', 'middleware' => 'settings'], function () {
+                Route::get('visit', ['as' => 'plugin.ga.api.visit', 'uses' => 'ApiController@visit']);
+                Route::get('browser', ['as' => 'plugin.ga.api.browser', 'uses' => 'ApiController@browser']);
+                Route::get('source', ['as' => 'plugin.ga.api.source', 'uses' => 'ApiController@source']);
+                Route::get('pv', ['as' => 'plugin.ga.api.pv', 'uses' => 'ApiController@pv']);
+            });
         }, ['namespace' => __NAMESPACE__]);
     }
 
@@ -85,7 +98,7 @@ class Plugin extends AbstractPlugin
 
     private function getTrackingCode($trackingId, $domain = 'auto')
     {
-        return View::make('ga::tracking', compact('trackingId', 'domain'));
+        return view('ga::tracking', compact('trackingId', 'domain'));
     }
 
     public function pluginPath()

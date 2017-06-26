@@ -8,7 +8,7 @@
     </div><!-- /.box-header -->
     <div class="box-body" style="display: block;">
 
-        <div id="__xe_browsers-chart" style="width: 100%; height: 250px"></div>
+        <div id="__xe_visit-sources-chart" style="width: 100%; height: 250px"></div>
 
     </div><!-- /.box-body -->
 </div>
@@ -22,7 +22,7 @@
 
         var dataLoad = function () {
             $.ajax({
-                url: '{{ route('plugin.ga.api.browser') }}',
+                url: '{{ route('plugin.ga.api.source') }}',
                 type: 'get',
                 data: {days: '{{ $days }}', limit: '{{ $limit }}'},
                 dataType: 'json',
@@ -42,11 +42,11 @@
             }
 
             var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Browser');
+            data.addColumn('string', 'Source');
             data.addColumn('number', 'Visit');
             data.addRows(rows);
 
-            var chart = new google.visualization.PieChart(document.getElementById('__xe_browsers-chart'));
+            var chart = new google.visualization.PieChart(document.getElementById('__xe_visit-sources-chart'));
 
             chart.draw(data, {
                 is3D: true,

@@ -8,7 +8,7 @@
     </div><!-- /.box-header -->
     <div class="box-body" style="display: block;">
 
-        <div id="__xe_browsers-chart" style="width: 100%; height: 250px"></div>
+        <div id="__xe_daily-visits-chart" style="width: 100%; height: 250px"></div>
 
     </div><!-- /.box-body -->
 </div>
@@ -22,9 +22,9 @@
 
         var dataLoad = function () {
             $.ajax({
-                url: '{{ route('plugin.ga.api.browser') }}',
+                url: '{{ route('plugin.ga.api.visit') }}',
                 type: 'get',
-                data: {days: '{{ $days }}', limit: '{{ $limit }}'},
+                data: {unit: '{{ $unit }}', days: '{{ $days }}'},
                 dataType: 'json',
                 success: function (response) {
                     draw(response);
@@ -38,19 +38,24 @@
         var draw = function (rawData) {
             var rows = rawData;
             for (var i = 0; i < rows.length; i++) {
-                rows[i] = [rows[i][0], parseInt(rows[i][1])];
+                rows[i] = [new Date(rows[i][0]), parseInt(rows[i][1])];
             }
 
             var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Browser');
+            data.addColumn('date', 'Date');
             data.addColumn('number', 'Visit');
             data.addRows(rows);
 
-            var chart = new google.visualization.PieChart(document.getElementById('__xe_browsers-chart'));
+            var chart = new google.visualization.LineChart(document.getElementById('__xe_daily-visits-chart'));
 
             chart.draw(data, {
-                is3D: true,
-                chartArea: {left:0, top:0, width:'100%',height:'100%'}
+//            title: 'Daily Visits',
+                pointSize: 5,
+                hAxis: {format: 'MMM dd'},
+                vAxis: {format: 'short'},
+                legend: 'none',
+//            legend: { position: 'bottom' }
+                chartArea: {left:30, top:20, width:'90%',height:'80%'}
             });
         };
     });
