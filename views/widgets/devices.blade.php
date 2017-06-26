@@ -1,16 +1,10 @@
-<div class="box box-error">
-    <div class="box-header with-border">
-        <h3 class="box-title">{{ xe_trans($title) }}</h3>
-        <div class="box-tools pull-right">
-            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-            <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-        </div>
-    </div><!-- /.box-header -->
-    <div class="box-body" style="display: block;">
-
+<div class="panel">
+    <div class="panel-heading">
+        <h3>{{ xe_trans($title) }}</h3>
+    </div>
+    <div class="panel-body">
         <div id="__xe_visit-device-chart" style="width: 100%; height: 250px"></div>
-
-    </div><!-- /.box-body -->
+    </div>
 </div>
 
 <script type="text/javascript">
