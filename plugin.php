@@ -9,10 +9,10 @@
 
 namespace Xpressengine\Plugins\GoogleAnalytics;
 
-use Illuminate\Contracts\Validation\Factory;
 use Xpressengine\Plugin\AbstractPlugin;
 use XeFrontend;
 use Route;
+use Validator;
 use View;
 use Xpressengine\Translation\Translator;
 
@@ -20,24 +20,32 @@ class Plugin extends AbstractPlugin
 {
     public function boot()
     {
+        Validator::extend('ga_json', function ($attribute, $value) {
+            return 'json' === $value->getClientOriginalExtension();
+        });
+        Validator::replacer('ga_json', function ($message, $attribute, $rule, $parameters) {
+            return xe_trans('validation.mimes', ['attribute' => $attribute, 'values' => 'json']);
+        });
+
+        View::addNamespace('ga', __DIR__ . '/views');
+        Translator::alias('google_analytics', 'ga');
+    }
+
+    public function register()
+    {
         app()->bind('xe.plugin.ga', function () {
             return $this;
         }, true);
 
         app()->singleton('xe.plugin.ga.handler', function ($app) {
-            return new Handler($app, $this->getSetting());
+            return new Handler(
+                $app,
+                new Setting($app['xe.config'], $app['xe.storage'], $app['xe.keygen'])
+            );
         }, true);
 
         $this->registerRoute();
         $this->registerEvent();
-
-
-        app(Factory::class)->extend('ga_json', function ($attr, $value) {
-            return 'json' === $value->getClientOriginalExtension();
-        }, 'The :attribute must be a file of type: json.');
-
-        View::addNamespace('ga', __DIR__ . '/views');
-        Translator::alias('google_analytics', 'ga');
     }
 
     public function activate($installedVersion = null)
@@ -82,7 +90,7 @@ class Plugin extends AbstractPlugin
             /** @var \Illuminate\Routing\Route $route */
             $route = app('router')->current();
             if (in_array('settings', $route->middleware()) === false) {
-                $setting = $this->getSetting();
+                $setting = app('xe.plugin.ga.handler')->getSetting();
                 if ($setting->get('trackingId')) {
                     XeFrontend::html('ga:tracking')->content(
                         $this->getTrackingCode($setting->get('trackingId'), $setting->get('domain', 'auto'))
@@ -94,23 +102,8 @@ class Plugin extends AbstractPlugin
         });
     }
 
-    public function getSetting()
-    {
-        return new Setting(app('xe.config'), app('xe.storage'), app('xe.keygen'));
-    }
-
     private function getTrackingCode($trackingId, $domain = 'auto')
     {
         return view('ga::tracking', compact('trackingId', 'domain'));
-    }
-
-    public function pluginPath()
-    {
-        return __DIR__;
-    }
-
-    public function assetPath()
-    {
-        return str_replace(base_path(), '', $this->pluginPath()) . '/assets';
     }
 }

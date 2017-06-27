@@ -1,4 +1,5 @@
-{{ XeFrontend::css(app('xe.plugin.ga')->assetPath() . '/skin.css')->load() }}
+{{ XeFrontend::css(app('xe.plugin.ga')->asset('assets/skin.css'))->load() }}
+{{ XeFrontend::translation(['validation.mimes']) }}
 
 @section('page_title')
     <h2>Google Analytics</h2>
@@ -77,6 +78,19 @@
 
             $('#__xe_file_info').collapse('hide');
             $('#__xe_file_input').collapse('show');
+        });
+
+        XE.validator.put('ga_json', function ($dst, parameters) {
+            var value = $dst.val();
+
+            console.log(value, value.split('.').pop());
+            if (value && 'json' !== value.split('.').pop()) {
+                XE.validator.error($dst, XE.Lang.trans('validation.mimes', {attribute: $dst.attr('name'), values: 'json'}));
+
+                return false;
+            }
+
+            return true;
         });
     });
 </script>

@@ -11,6 +11,7 @@ namespace Xpressengine\Plugins\GoogleAnalytics;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use XeFrontend;
 use XePresenter;
 use XeStorage;
 use XeDB;
@@ -22,20 +23,20 @@ class ManageController extends Controller
         XePresenter::setSkinTargetId('google_analytics');
     }
 
-    public function getSetting()
+    public function getSetting(Handler $handler)
     {
         $ruleName = 'analyticsSetting';
-        \XeFrontend::rule($ruleName, $this->getRules());
+        XeFrontend::rule($ruleName, $this->getRules());
 
         return XePresenter::make('setting', [
-            'setting' => app('xe.plugin.ga')->getSetting(),
+            'setting' => $handler->getSetting(),
             'ruleName' => $ruleName
         ]);
     }
 
-    public function postSetting(Request $request)
+    public function postSetting(Request $request, Handler $handler)
     {
-        $setting = app('xe.plugin.ga')->getSetting();
+        $setting = $handler->getSetting();
 
         $rules = $this->getRules();
 
@@ -69,7 +70,6 @@ class ManageController extends Controller
     private function getRules()
     {
         return [
-//            'accountEmail' => 'email',
             'profileId' => 'numeric',
             'keyFile' => 'ga_json',
             'trackingId' => 'required'
