@@ -31,7 +31,7 @@
         var draw = function (rawData) {
             var rows = rawData;
             for (var i = 0; i < rows.length; i++) {
-                rows[i] = [new Date(rows[i][0]), parseInt(rows[i][1])];
+                rows[i] = [new Date(rows[i][0]*1000), parseInt(rows[i][1])];
             }
 
             var data = new google.visualization.DataTable();

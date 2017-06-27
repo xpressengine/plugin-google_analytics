@@ -43,10 +43,9 @@ class Handler
             ['dimensions' => 'ga:date']
         );
 
-
         $rows = [];
         foreach ($data->getRows() as $row) {
-            $rows[] = [strtotime($row[0]) * 1000, $row[1]];
+            $rows[] = [strtotime($row[0]), $row[1]];
         }
 
         return $rows;
@@ -112,6 +111,24 @@ class Handler
         );
 
         $rows = $data->getRows() ?: [];
+
+        return $rows;
+    }
+
+    public function getContentViewData($startDate, $endDate, $path)
+    {
+        $data = $this->getAnalytics()->data_ga->get(
+            $this->getGaId(),
+            $startDate,
+            $endDate,
+            'ga:pageviews',
+            ['dimensions' => 'ga:date', 'filters' => 'ga:pagePath==' . $path]
+        );
+
+        $rows = [];
+        foreach ($data->getRows() as $row) {
+            $rows[] = [strtotime($row[0]), $row[1]];
+        }
 
         return $rows;
     }
