@@ -36,7 +36,7 @@
         };
 
         var draw = function (rawData) {
-            var rows = rawData, tpl, src, cnt, per, total = 0;
+            var rows = rawData, tpl, src, cnt, per, perTxt, total = 0;
             for (var i = 0; i < rows.length; i++) {
                 total += parseInt(rows[i][1]);
             }
@@ -45,15 +45,16 @@
 //                rows[i] = [rows[i][0], parseInt(rows[i][1])];
                 src = rows[i][0];
                 cnt = parseInt(rows[i][1]);
-                per = parseInt(cnt / total * 100) + Math.round(((cnt / total * 100) - parseInt(cnt / total * 100)) * 100) / 100 + '%';
+                per = cnt / total * 100;
+                perTxt = parseInt(per) + Math.round(((per) - parseInt(per)) * 100) / 100 + '%';
 
                 tpl = '<tr>'
                     + ' <td>' + src + '</td>'
                     + ' <td>' + cnt + '</td>'
                     + ' <td>'
                     + '     <div class="progress" style="background-color: #c4c4c4;">'
-                    + '         <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:'+ per +'">'
-                    +               per
+                    + '         <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:'+ perTxt +'">'
+                    +               perTxt
                     + '         </div>'
                     + '     </div>'
                     + ' </td>'
