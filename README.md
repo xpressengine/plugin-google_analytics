@@ -32,3 +32,10 @@
 위 항목중 `이메일 계정` 을 구글 analytics 에 사용자로 등록해야 합니다. 
 - [구글 analytics 사이트](https://www.google.com/analytics/web/) 에서 `속성` 탭으로 이동합니다.
 - `사용자 관리`로 이동하여 `이메일 계정`을 추가하고 권한을 `읽고 분석하기` 로 설정합니다.
+
+#### API 활성화
+- [구글 api 관리자](https://console.developers.google.com/) 페이지로 이동합니다.
+- 대시보드에서 `API 사용 설정` 을 클릭합니다.
+- 표시되는 API 항목중 `Analytics API` 를 클릭하여 이동합니다.
+- `사용 설정` 을 클릭하여 Analytics API 를 활성화 합니다.
+  
