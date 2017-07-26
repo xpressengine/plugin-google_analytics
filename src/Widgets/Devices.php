@@ -32,7 +32,7 @@ class Devices extends AbstractAnalytics
 
     public function renderSetting(array $args = [])
     {
-        return view('ga::widgets.settings.sources', [
+        return view('ga::widgets.settings.devices', [
             'startdate' => array_get($args, 'startdate', $this->defaults['startdate']),
         ]);
     }

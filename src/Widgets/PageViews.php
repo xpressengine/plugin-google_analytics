@@ -28,7 +28,7 @@ class PageViews extends AbstractAnalytics
 
     public function renderSetting(array $args = [])
     {
-        return view('ga::widgets.settings.sources', [
+        return view('ga::widgets.settings.pv', [
             'startdate' => array_get($args, 'startdate', $this->defaults['startdate']),
             'limit' => array_get($args, 'limit', $this->defaults['limit']),
         ]);

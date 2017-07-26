@@ -1,56 +1,17 @@
-<div class="box box-error">
-    <div class="box-header with-border">
-        <h3 class="box-title">{{ xe_trans($title) }}</h3>
-        <div class="box-tools pull-right">
-            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-            <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-        </div>
-    </div><!-- /.box-header -->
-    <div class="box-body" style="display: block;">
-
-        <div id="__xe_browsers-chart" style="width: 100%; height: 250px"></div>
-
-    </div><!-- /.box-body -->
+<div class="form-group">
+    <label>시작일</label>
+    <select name="startdate" class="form-control">
+        <option value="7daysAgo" {{ '7daysAgo' === $startdate ? 'selected' : '' }}>7daysAgo</option>
+        <option value="15daysAgo" {{ '15daysAgo' === $startdate ? 'selected' : '' }}>15daysAgo</option>
+        <option value="30daysAgo" {{ '30daysAgo' === $startdate ? 'selected' : '' }}>30daysAgo</option>
+        <option value="60daysAgo" {{ '60daysAgo' === $startdate ? 'selected' : '' }}>60daysAgo</option>
+    </select>
 </div>
-
-<script type="text/javascript">
-    $(function () {
-        google.charts.setOnLoadCallback(function () {
-            dataLoad();
-        });
-
-        var dataLoad = function () {
-            $.ajax({
-                url: '{{ route('plugin.ga.api.browser') }}',
-                type: 'get',
-                data: {days: '{{ $days }}', limit: '{{ $limit }}'},
-                dataType: 'json',
-                success: function (response) {
-                    draw(response);
-                },
-                error: function () {
-
-                }
-            });
-        };
-
-        var draw = function (rawData) {
-            var rows = rawData;
-            for (var i = 0; i < rows.length; i++) {
-                rows[i] = [rows[i][0], parseInt(rows[i][1])];
-            }
-
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Browser');
-            data.addColumn('number', 'Visit');
-            data.addRows(rows);
-
-            var chart = new google.visualization.PieChart(document.getElementById('__xe_browsers-chart'));
-
-            chart.draw(data, {
-                is3D: true,
-                chartArea: {left:0, top:0, width:'100%',height:'100%'}
-            });
-        };
-    });
-</script>
+<div class="form-group">
+    <label>보기</label>
+    <select name="limit" class="form-control">
+        @for($i = 2; $i <= 10; $i++)
+            <option value="{{ $i }}" {{ $i == $limit ? 'selected' : '' }}>{{ $i }}개</option>
+        @endfor
+    </select>
+</div>
