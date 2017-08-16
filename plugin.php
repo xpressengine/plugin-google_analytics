@@ -33,16 +33,13 @@ class Plugin extends AbstractPlugin
 
     public function register()
     {
-        app()->bind('xe.plugin.ga', function () {
-            return $this;
-        }, true);
-
-        app()->singleton('xe.plugin.ga.handler', function ($app) {
+        app()->singleton(Handler::class, function ($app) {
             return new Handler(
                 $app,
                 new Setting($app['xe.config'], $app['xe.storage'], $app['xe.keygen'])
             );
         }, true);
+        app()->alias(Handler::class, 'xe.ga');
 
         $this->routes();
         $this->intercepts();
@@ -71,7 +68,7 @@ class Plugin extends AbstractPlugin
             /** @var \Illuminate\Routing\Route $route */
             $route = app('router')->current();
             if (in_array('settings', $route->middleware()) === false) {
-                $setting = app('xe.plugin.ga.handler')->getSetting();
+                $setting = app('xe.ga')->getSetting();
                 if ($setting->get('trackingId')) {
                     XeFrontend::html('ga:tracking')->content(
                         $this->getTrackingCode($setting->get('trackingId'), $setting->get('domain', 'auto'))
@@ -90,6 +87,6 @@ class Plugin extends AbstractPlugin
 
     public function uninstall()
     {
-        app('xe.plugin.ga.handler')->getSetting()->destroy();
+        app('xe.ga')->getSetting()->destroy();
     }
 }

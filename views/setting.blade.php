@@ -1,4 +1,4 @@
-{{ XeFrontend::css(app('xe.plugin.ga')->asset('assets/skin.css'))->load() }}
+{{ XeFrontend::css('plugins/google_analytics/assets/skin.css')->load() }}
 {{ XeFrontend::translation(['validation.mimes']) }}
 
 @section('page_title')
