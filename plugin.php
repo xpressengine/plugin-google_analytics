@@ -44,8 +44,8 @@ class Plugin extends AbstractPlugin
             );
         }, true);
 
-        $this->registerRoute();
-        $this->registerEvent();
+        $this->routes();
+        $this->intercepts();
     }
 
     public function activate($installedVersion = null)
@@ -55,36 +55,17 @@ class Plugin extends AbstractPlugin
 
     public function getSettingsURI()
     {
-        return route('manage.google_analytics.edit');
+        return route('ga::setting.edit');
     }
 
-    private function registerRoute()
+    private function routes()
     {
-        Route::settings($this->getId(), function () {
-            Route::get('setting', [
-                'as' => 'manage.google_analytics.edit',
-                'uses' => 'ManageController@getSetting'
-            ]);
-            Route::post('setting', [
-                'as' => 'manage.google_analytics.update',
-                'uses' => 'ManageController@postSetting'
-            ]);
-        }, ['namespace' => __NAMESPACE__]);
-
-        Route::fixed('ga', function () {
-            Route::group(['prefix' => 'api', 'middleware' => 'settings'], function () {
-                Route::get('visit', ['as' => 'plugin.ga.api.visit', 'uses' => 'ApiController@visit']);
-                Route::get('browser', ['as' => 'plugin.ga.api.browser', 'uses' => 'ApiController@browser']);
-                Route::get('source', ['as' => 'plugin.ga.api.source', 'uses' => 'ApiController@source']);
-                Route::get('pv', ['as' => 'plugin.ga.api.pv', 'uses' => 'ApiController@pv']);
-                Route::get('device', ['as' => 'plugin.ga.api.device', 'uses' => 'ApiController@device']);
-
-                Route::get('test', ['as' => 'plugin.ga.api.test', 'uses' => 'ApiController@test']);
-            });
-        }, ['namespace' => __NAMESPACE__]);
+        Route::group(['namespace' => 'Xpressengine\\Plugins\\GoogleAnalytics'], function () {
+            require plugins_path('google_analytics/routes.php');
+        });
     }
 
-    private function registerEvent()
+    private function intercepts()
     {
         intercept('Presenter@make', 'googleAnalytics.addScript', function($target, $id, $data = [], $mergeData = [], $html = true, $api = false) {
             /** @var \Illuminate\Routing\Route $route */
@@ -105,5 +86,10 @@ class Plugin extends AbstractPlugin
     private function getTrackingCode($trackingId, $domain = 'auto')
     {
         return view('ga::tracking', compact('trackingId', 'domain'));
+    }
+
+    public function uninstall()
+    {
+        app('xe.plugin.ga.handler')->getSetting()->destroy();
     }
 }

@@ -97,4 +97,10 @@ class Setting
 
         return null;
     }
+
+    public function destroy()
+    {
+        $this->storage->unBindAll($this->get('uuid'), true);
+        $this->cfg->removeByName($this->key);
+    }
 }

@@ -11,7 +11,7 @@
 
 <div class="panel">
     <div class="panel-body">
-        <form method="post" action="{{ route('manage.google_analytics.update') }}" enctype="multipart/form-data" data-rule="analyticsSetting">
+        <form method="post" action="{{ route('ga::setting.update') }}" enctype="multipart/form-data" data-rule="analyticsSetting">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="panel">
                 <div class="panel-heading">

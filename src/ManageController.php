@@ -64,7 +64,7 @@ class ManageController extends Controller
         }
         XeDB::commit();
 
-        return redirect()->route('manage.google_analytics.edit');
+        return redirect()->route('ga::setting.edit');
     }
 
     private function getRules()

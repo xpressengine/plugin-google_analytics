@@ -15,7 +15,7 @@
 
         var dataLoad = function () {
             $.ajax({
-                url: '{{ route('plugin.ga.api.device') }}',
+                url: '{{ route('ga::api.device') }}',
                 type: 'get',
                 data: {startdate: '{{ $startdate }}'},
                 dataType: 'json',

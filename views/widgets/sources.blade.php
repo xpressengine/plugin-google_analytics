@@ -15,7 +15,7 @@
 
         var dataLoad = function () {
             $.ajax({
-                url: '{{ route('plugin.ga.api.source') }}',
+                url: '{{ route('ga::api.source') }}',
                 type: 'get',
                 data: {startdate: '{{ $startdate }}', limit: '{{ $limit }}'},
                 dataType: 'json',

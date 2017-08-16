@@ -22,7 +22,7 @@
     $(function () {
         var dataLoad = function () {
             $.ajax({
-                url: '{{ route('plugin.ga.api.pv') }}',
+                url: '{{ route('ga::api.pv') }}',
                 type: 'get',
                 data: {startdate: '{{ $startdate }}', limit: '{{ $limit }}'},
                 dataType: 'json',

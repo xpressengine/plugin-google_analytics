@@ -89,9 +89,4 @@ class ApiController extends Controller
 
         return response()->json($rows);
     }
-
-    public function test(Handler $handler)
-    {
-
-    }
 }
