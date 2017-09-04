@@ -2,7 +2,7 @@
     <div class="panel-heading">
         <h3>{{ xe_trans($title) }}</h3>
     </div>
-    <div class="panel-body">
+    <div class="panel-body" id="__xe_page-views-table-context" data-progress-type="cover" data-progress-bgcolor="#ffffff">
         <table class="table" id="__xe_page-views-table">
             <thead>
             <tr>
@@ -26,6 +26,7 @@
                 type: 'get',
                 data: {startdate: '{{ $startdate }}', limit: '{{ $limit }}'},
                 dataType: 'json',
+                context: '#__xe_page-views-table-context',
                 success: function (response) {
                     draw(response);
                 },

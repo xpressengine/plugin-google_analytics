@@ -3,7 +3,7 @@
         <h3>{{ xe_trans($title) }}</h3>
     </div>
     <div class="panel-body">
-        <div id="__xe_daily-visits-chart" style="width: 100%; height: 250px"></div>
+        <div id="__xe_daily-visits-chart" style="width: 100%; height: 250px" data-progress-type="cover" data-progress-bgcolor="#ffffff"></div>
     </div>
 </div>
 
@@ -19,6 +19,7 @@
                 type: 'get',
                 data: {startdate: '{{ $startdate }}', unit: '{{ $unit }}'},
                 dataType: 'json',
+                context: '#__xe_daily-visits-chart',
                 success: function (response) {
                     draw(response);
                 },
@@ -31,7 +32,8 @@
         var draw = function (rawData) {
             var rows = rawData;
             for (var i = 0; i < rows.length; i++) {
-                rows[i] = [new Date(rows[i][0]*1000), parseInt(rows[i][1])];
+                var parsed = parseDate(rows[i][0]);
+                rows[i] = [new Date(parsed[0], parseInt(parsed[1]) -1, parsed[2]), parseInt(rows[i][1])];
             }
 
             var data = new google.visualization.DataTable();
@@ -44,12 +46,20 @@
             chart.draw(data, {
 //            title: 'Daily Visits',
                 pointSize: 5,
-                hAxis: {format: 'MMM dd'},
+                hAxis: {format: 'MM/dd'},
                 vAxis: {format: 'short'},
                 legend: 'none',
 //            legend: { position: 'bottom' }
                 chartArea: {left:30, top:20, width:'90%',height:'80%'}
             });
+        };
+
+        var parseDate = function (strDate) {
+            var y = strDate.substr(0, 4),
+                m = strDate.substr(4, 2),
+                d = strDate.substr(6, 2);
+
+            return [y, m, d];
         };
     });
 </script>

@@ -7,7 +7,7 @@
  * @link        https://xpressengine.io
  */
 
-namespace Xpressengine\Plugins\GoogleAnalytics;
+namespace Xpressengine\Plugins\GoogleAnalytics\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -15,6 +15,7 @@ use XeFrontend;
 use XePresenter;
 use XeStorage;
 use XeDB;
+use Xpressengine\Plugins\GoogleAnalytics\Handler;
 
 class ManageController extends Controller
 {
@@ -28,7 +29,7 @@ class ManageController extends Controller
         $ruleName = 'analyticsSetting';
         XeFrontend::rule($ruleName, $this->getRules());
 
-        return XePresenter::make('setting', [
+        return XePresenter::make('settings.setting', [
             'setting' => $handler->getSetting(),
             'ruleName' => $ruleName
         ]);

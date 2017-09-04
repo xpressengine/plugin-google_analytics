@@ -9,11 +9,12 @@
 
 namespace Xpressengine\Plugins\GoogleAnalytics;
 
-use Xpressengine\Plugin\AbstractPlugin;
-use XeFrontend;
 use Route;
 use Validator;
 use View;
+use XeFrontend;
+use XeRegister;
+use Xpressengine\Plugin\AbstractPlugin;
 use Xpressengine\Translation\Translator;
 
 class Plugin extends AbstractPlugin
@@ -45,11 +46,6 @@ class Plugin extends AbstractPlugin
         $this->intercepts();
     }
 
-    public function activate($installedVersion = null)
-    {
-        //
-    }
-
     public function getSettingsURI()
     {
         return route('ga::setting.edit');
@@ -57,7 +53,7 @@ class Plugin extends AbstractPlugin
 
     private function routes()
     {
-        Route::group(['namespace' => 'Xpressengine\\Plugins\\GoogleAnalytics'], function () {
+        Route::group(['namespace' => 'Xpressengine\\Plugins\\GoogleAnalytics\\Controllers', 'as' => 'ga::'], function () {
             require plugins_path('google_analytics/routes.php');
         });
     }

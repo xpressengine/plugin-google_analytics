@@ -3,7 +3,7 @@
         <h3>{{ xe_trans($title) }}</h3>
     </div>
     <div class="panel-body">
-        <div id="__xe_visit-sources-chart" style="width: 100%; height: 250px"></div>
+        <div id="__xe_visit-sources-chart" style="width: 100%; height: 250px" data-progress-type="cover" data-progress-bgcolor="#ffffff"></div>
     </div>
 </div>
 
@@ -19,6 +19,7 @@
                 type: 'get',
                 data: {startdate: '{{ $startdate }}', limit: '{{ $limit }}'},
                 dataType: 'json',
+                context: '#__xe_visit-sources-chart',
                 success: function (response) {
                     draw(response);
                 },

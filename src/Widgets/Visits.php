@@ -13,7 +13,7 @@ class Visits extends AbstractAnalytics
 {
     protected $defaults = [
         'startdate' => '7daysAgo',
-        'unit' => 'day',
+        'unit' => 'date',
     ];
 
     public function render()

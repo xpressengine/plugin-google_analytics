@@ -33,104 +33,17 @@ class Handler
         $this->setting = $setting;
     }
 
-    public function getVisitData($startDate, $endDate)
+    public function getData($startDate, $endDate, $metrics, array $opts)
     {
         $data = $this->getAnalytics()->data_ga->get(
             $this->getGaId(),
             $startDate,
             $endDate,
-            'ga:visits',
-            ['dimensions' => 'ga:date']
+            $metrics,
+            $opts
         );
 
-        $rows = [];
-        foreach ($data->getRows() as $row) {
-            $rows[] = [strtotime($row[0]), $row[1]];
-        }
-
-        return $rows;
-    }
-
-    public function getBrowserData($startDate, $endDate, $limit)
-    {
-        $data = $this->getAnalytics()->data_ga->get(
-            $this->getGaId(),
-            $startDate,
-            $endDate,
-            'ga:visits',
-            ['dimensions' => 'ga:browser', 'sort' => '-ga:visits']
-        );
-
-
-        $rows = $data->getRows() ?: [];
-        $rows = array_slice($rows, 0, $limit);
-
-        return $rows;
-    }
-
-    public function getVisitSourceData($startDate, $endDate, $limit)
-    {
-        $data = $this->getAnalytics()->data_ga->get(
-            $this->getGaId(),
-            $startDate,
-            $endDate,
-            'ga:visits',
-            ['dimensions' => 'ga:source', 'sort' => '-ga:visits']
-        );
-
-        $rows = $data->getRows() ?: [];
-        $rows = array_slice($rows, 0, $limit);
-
-        return $rows;
-    }
-
-    public function getPageViewData($startDate, $endDate, $limit)
-    {
-        $data = $this->getAnalytics()->data_ga->get(
-            $this->getGaId(),
-            $startDate,
-            $endDate,
-            'ga:pageviews',
-            ['dimensions' => 'ga:pagePath', 'sort' => '-ga:pageviews']
-        );
-
-        $rows = $data->getRows() ?: [];
-        $rows = array_slice($rows, 0, $limit);
-
-        return $rows;
-    }
-
-    public function getDeviceData($startDate, $endDate)
-    {
-        $data = $this->getAnalytics()->data_ga->get(
-            $this->getGaId(),
-            $startDate,
-            $endDate,
-            'ga:visits',
-            ['dimensions' => 'ga:deviceCategory', 'sort' => '-ga:deviceCategory']
-        );
-
-        $rows = $data->getRows() ?: [];
-
-        return $rows;
-    }
-
-    public function getContentViewData($startDate, $endDate, $path)
-    {
-        $data = $this->getAnalytics()->data_ga->get(
-            $this->getGaId(),
-            $startDate,
-            $endDate,
-            'ga:pageviews',
-            ['dimensions' => 'ga:date', 'filters' => 'ga:pagePath==' . $path]
-        );
-
-        $rows = [];
-        foreach ($data->getRows() as $row) {
-            $rows[] = [strtotime($row[0]), $row[1]];
-        }
-
-        return $rows;
+        return $data->getRows() ?: [];
     }
 
     protected function getGaId()
