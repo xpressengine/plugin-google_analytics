@@ -22,13 +22,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>{{ xe_trans('ga::trackingId') }}</label>
-                                <input type="text" class="form-control" name="trackingId" value="{{ $setting->get('trackingId') ?: Input::old('trackingId') }}">
+                                <input type="text" class="form-control" name="trackingId" value="{{ $setting->get('trackingId') ?: Request::old('trackingId') }}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>{{ xe_trans('ga::trackingDomain') }} ({{ xe_trans('ga::optional') }})</label>
-                                <input type="text" class="form-control" name="domain" value="{{ $setting->get('domain') ?: Input::old('domain') }}">
+                                <input type="text" class="form-control" name="domain" value="{{ $setting->get('domain') ?: Request::old('domain') }}">
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>{{ xe_trans('ga::profileId') }}</label>
-                                <input type="text" class="form-control" name="profileId" value="{{ $setting->get('profileId') ?: Input::old('profileId') }}">
+                                <input type="text" class="form-control" name="profileId" value="{{ $setting->get('profileId') ?: Request::old('profileId') }}">
                             </div>
                         </div>
                         <div class="col-md-6">
