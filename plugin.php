@@ -63,7 +63,7 @@ class Plugin extends AbstractPlugin
         intercept('Presenter@make', 'googleAnalytics.addScript', function($target, $id, $data = [], $mergeData = [], $html = true, $api = false) {
             /** @var \Illuminate\Routing\Route $route */
             $route = app('router')->current();
-            if (in_array('settings', $route->middleware()) === false) {
+            if ($route && in_array('settings', $route->middleware()) === false) {
                 $setting = app('xe.ga')->getSetting();
                 if ($setting->get('trackingId')) {
                     XeFrontend::html('ga:tracking')->content(
