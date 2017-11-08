@@ -51,7 +51,7 @@ class Handler
         return 'ga:' . $this->getSetting('profileId');
     }
 
-    protected function getAnalytics()
+    public function getAnalytics()
     {
         if ($this->checkConfiguration() !== true) {
             throw new NotConfigurationWidgetException;
