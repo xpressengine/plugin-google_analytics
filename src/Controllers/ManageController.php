@@ -41,6 +41,13 @@ class ManageController extends Controller
 
         $rules = $this->getRules();
 
+        if ($request->file('keyFile') == null) {
+            unset($rules['keyFile']);
+        }
+        if ($request->file('profileId') == null) {
+            unset($rules['profileId']);
+        }
+        
         $this->validate($request, $rules);
 
         $inputs = $request->only([
