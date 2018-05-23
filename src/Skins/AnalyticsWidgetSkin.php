@@ -19,7 +19,7 @@ class AnalyticsWidgetSkin extends AbstractSkin
 
         XeFrontend::js('https://www.gstatic.com/charts/loader.js')->appendTo('body')->load();
         XeFrontend::html('ga:chartload')->content(
-            "<script>google.charts.load('current', {packages:['corechart'], 'language':'ko'});</script>"
+            "<script>window.google.charts.load('current', {packages:['corechart'], 'language':'ko'});</script>"
         )->load();
     }
 

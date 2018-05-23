@@ -71,26 +71,27 @@
         </form>
     </div>
 </div>
-<script type="text/javascript">
-    $(function () {
-        $('#__xe_btn_remove_key_file').click(function (e) {
-            e.preventDefault();
 
-            $('#__xe_file_info').collapse('hide');
-            $('#__xe_file_input').collapse('show');
-        });
+<script>
+//  @FIXME
+window.jQuery(function ($) {
+    $('#__xe_btn_remove_key_file').click(function (e) {
+        e.preventDefault();
 
-        XE.validator.put('ga_json', function ($dst, parameters) {
-            var value = $dst.val();
-
-            console.log(value, value.split('.').pop());
-            if (value && 'json' !== value.split('.').pop()) {
-                XE.validator.error($dst, XE.Lang.trans('validation.mimes', {attribute: $dst.attr('name'), values: 'json'}));
-
-                return false;
-            }
-
-            return true;
-        });
+        $('#__xe_file_info').collapse('hide');
+        $('#__xe_file_input').collapse('show');
     });
+
+    window.XE.Validator.put('ga_json', function ($dst, parameters) {
+        var value = $dst.val();
+
+        if (value && 'json' !== value.split('.').pop()) {
+            XE.Validator.error($dst, XE.Lang.trans('validation.mimes', {attribute: $dst.attr('name'), values: 'json'}));
+
+            return false;
+        }
+
+        return true;
+    });
+});
 </script>
