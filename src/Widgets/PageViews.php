@@ -1,14 +1,31 @@
 <?php
 /**
+ * PageViews.php
+ *
+ * This file is part of the Xpressengine package.
+ *
+ * PHP version 5
+ *
+ * @category    GoogleAnalytics
+ * @package     Xpressengine\Plugins\GoogleAnalytics
  * @author      XE Developers <developers@xpressengine.com>
- * @copyright   2015 Copyright (C) NAVER Corp. <http://www.navercorp.com>
- * @license     LGPL-2.1
- * @license     http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
- * @link        https://xpressengine.io
+ * @copyright   2015 Copyright (C) NAVER <http://www.navercorp.com>
+ * @license     http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html LGPL-2.1
+ * @link        http://www.xpressengine.com
  */
 
 namespace Xpressengine\Plugins\GoogleAnalytics\Widgets;
 
+/**
+ * PageViews
+ *
+ * @category    GoogleAnalytics
+ * @package     Xpressengine\Plugins\GoogleAnalytics
+ * @author      XE Developers <developers@xpressengine.com>
+ * @copyright   2015 Copyright (C) NAVER <http://www.navercorp.com>
+ * @license     http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html LGPL-2.1
+ * @link        http://www.xpressengine.com
+ */
 class PageViews extends AbstractAnalytics
 {
     protected $defaults = [
@@ -16,6 +33,11 @@ class PageViews extends AbstractAnalytics
         'limit' => 5,
     ];
 
+    /**
+     * render
+     *
+     * @return string
+     */
     public function render()
     {
         $config = $this->setting();
@@ -26,6 +48,13 @@ class PageViews extends AbstractAnalytics
         ]);
     }
 
+    /**
+     * render setting
+     *
+     * @param array $args args
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|string
+     */
     public function renderSetting(array $args = [])
     {
         return view('ga::widgets.settings.pv', [

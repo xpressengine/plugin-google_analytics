@@ -1,15 +1,17 @@
 <?php
 /**
- * AnalyticsController.php
+ * ApiController.php
+ *
+ * This file is part of the Xpressengine package.
  *
  * PHP version 5
  *
- * @category
- * @package
+ * @category    GoogleAnalytics
+ * @package     Xpressengine\Plugins\GoogleAnalytics
  * @author      XE Developers <developers@xpressengine.com>
- * @copyright   2015 Copyright (C) NAVER Corp. <http://www.navercorp.com>
+ * @copyright   2015 Copyright (C) NAVER <http://www.navercorp.com>
  * @license     http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html LGPL-2.1
- * @link        https://xpressengine.io
+ * @link        http://www.xpressengine.com
  */
 
 namespace Xpressengine\Plugins\GoogleAnalytics\Controllers;
@@ -19,8 +21,26 @@ use Carbon\Carbon;
 use Xpressengine\Http\Request;
 use Xpressengine\Plugins\GoogleAnalytics\Handler;
 
+/**
+ * ApiController
+ *
+ * @category    GoogleAnalytics
+ * @package     Xpressengine\Plugins\GoogleAnalytics
+ * @author      XE Developers <developers@xpressengine.com>
+ * @copyright   2015 Copyright (C) NAVER <http://www.navercorp.com>
+ * @license     http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html LGPL-2.1
+ * @link        http://www.xpressengine.com
+ */
 class ApiController extends Controller
 {
+    /**
+     * visit
+     *
+     * @param Request $request request
+     * @param Handler $handler handler
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function visit(Request $request, Handler $handler)
     {
         $startdate = $request->get('startdate', '7daysAgo');
@@ -34,6 +54,14 @@ class ApiController extends Controller
         return response()->json($rows);
     }
 
+    /**
+     * term
+     *
+     * @param Request $request request
+     * @param Handler $handler handler
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function term(Request $request, Handler $handler)
     {
         $startyear = $request->get('startyear', date('Y'));
@@ -52,6 +80,14 @@ class ApiController extends Controller
         return response()->json($rows);
     }
 
+    /**
+     * browser
+     *
+     * @param Request $request request
+     * @param Handler $handler handler
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function browser(Request $request, Handler $handler)
     {
         $startdate = $request->get('startdate', '7daysAgo');
@@ -67,6 +103,14 @@ class ApiController extends Controller
         return response()->json($rows);
     }
 
+    /**
+     * source
+     *
+     * @param Request $request request
+     * @param Handler $handler handler
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function source(Request $request, Handler $handler)
     {
         $startdate = $request->get('startdate', '7daysAgo');
@@ -82,6 +126,14 @@ class ApiController extends Controller
         return response()->json($rows);
     }
 
+    /**
+     * pv
+     *
+     * @param Request $request request
+     * @param Handler $handler handler
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function pv(Request $request, Handler $handler)
     {
         $startdate = $request->get('startdate', '7daysAgo');
@@ -97,6 +149,14 @@ class ApiController extends Controller
         return response()->json($rows);
     }
 
+    /**
+     * device
+     *
+     * @param Request $request request
+     * @param Handler $handler handler
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function device(Request $request, Handler $handler)
     {
         $startdate = $request->get('startdate', '7daysAgo');
@@ -110,6 +170,14 @@ class ApiController extends Controller
         return response()->json($rows);
     }
 
+    /**
+     * page
+     *
+     * @param Request $request request
+     * @param Handler $handler handler
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function page(Request $request, Handler $handler)
     {
         $startdate = $request->get('startdate', '7daysAgo');
@@ -124,6 +192,11 @@ class ApiController extends Controller
         return response()->json($rows);
     }
 
+    /**
+     * test
+     *
+     * @return void
+     */
     public function test()
     {
     }

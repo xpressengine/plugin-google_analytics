@@ -1,10 +1,17 @@
 <?php
 /**
+ * ManageController.php
+ *
+ * This file is part of the Xpressengine package.
+ *
+ * PHP version 5
+ *
+ * @category    GoogleAnalytics
+ * @package     Xpressengine\Plugins\GoogleAnalytics
  * @author      XE Developers <developers@xpressengine.com>
- * @copyright   2015 Copyright (C) NAVER Corp. <http://www.navercorp.com>
- * @license     LGPL-2.1
- * @license     http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
- * @link        https://xpressengine.io
+ * @copyright   2015 Copyright (C) NAVER <http://www.navercorp.com>
+ * @license     http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html LGPL-2.1
+ * @link        http://www.xpressengine.com
  */
 
 namespace Xpressengine\Plugins\GoogleAnalytics\Controllers;
@@ -17,13 +24,33 @@ use XeStorage;
 use XeDB;
 use Xpressengine\Plugins\GoogleAnalytics\Handler;
 
+/**
+ * ManageController
+ *
+ * @category    GoogleAnalytics
+ * @package     Xpressengine\Plugins\GoogleAnalytics
+ * @author      XE Developers <developers@xpressengine.com>
+ * @copyright   2015 Copyright (C) NAVER <http://www.navercorp.com>
+ * @license     http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html LGPL-2.1
+ * @link        http://www.xpressengine.com
+ */
 class ManageController extends Controller
 {
+    /**
+     * ManageController constructor.
+     */
     public function __construct()
     {
         XePresenter::setSkinTargetId('google_analytics');
     }
 
+    /**
+     * get setting
+     *
+     * @param Handler $handler handler
+     *
+     * @return mixed|\Xpressengine\Presenter\Presentable
+     */
     public function getSetting(Handler $handler)
     {
         $ruleName = 'analyticsSetting';
@@ -35,6 +62,14 @@ class ManageController extends Controller
         ]);
     }
 
+    /**
+     * post setting
+     *
+     * @param Request $request request
+     * @param Handler $handler handler
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function postSetting(Request $request, Handler $handler)
     {
         $setting = $handler->getSetting();
@@ -75,6 +110,11 @@ class ManageController extends Controller
         return redirect()->route('ga::setting.edit');
     }
 
+    /**
+     * get rules
+     *
+     * @return array
+     */
     private function getRules()
     {
         return [
