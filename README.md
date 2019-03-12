@@ -1,4 +1,9 @@
-# plugin-google_analytics
+
+<p align="center"> 
+  <img src="https://raw.githubusercontent.com/xpressengine/plugin-google_analytics/master/icon.png">
+ </p>
+
+# XE3 google analytics Plugin
 이 어플리케이션은 Xpressengine3(이하 XE3)의 플러그인입니다.
 
 이 플러그인은 XE3에서 Google Analytics 설정 기능을 제공합니다.
