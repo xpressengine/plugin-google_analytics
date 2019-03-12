@@ -52,6 +52,9 @@ class Plugin extends AbstractPlugin
 
         View::addNamespace('ga', __DIR__ . '/views');
         Translator::alias('google_analytics', 'ga');
+
+        $this->routes();
+        $this->intercepts();
     }
 
     /**
@@ -68,9 +71,6 @@ class Plugin extends AbstractPlugin
             );
         }, true);
         app()->alias(Handler::class, 'xe.ga');
-
-        $this->routes();
-        $this->intercepts();
     }
 
     /**
