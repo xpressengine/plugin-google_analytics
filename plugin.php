@@ -16,6 +16,7 @@
 
 namespace Xpressengine\Plugins\GoogleAnalytics;
 
+use Illuminate\Support\Facades\Artisan;
 use Route;
 use Validator;
 use View;
@@ -146,5 +147,13 @@ class Plugin extends AbstractPlugin
     public function uninstall()
     {
         app('xe.ga')->getSetting()->destroy();
+    }
+
+    public function install()
+    {
+        Artisan::call('translation:import',[
+            'name'=>'google_analytics',
+            '--path' => str_replace(base_path(),'.',self::path('langs/lang.php'))
+        ]);
     }
 }

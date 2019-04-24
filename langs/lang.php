@@ -35,6 +35,11 @@ return [
         'en' => 'optional',
     ],
 
+    'allClickEvent' => [
+        'ko' => '모든 클릭이벤트 수집',
+        'en' => 'Tracking All Click Event',
+    ],
+
     'widget' => [
         'browser' => [
             'ko' => '브라우저 별',
