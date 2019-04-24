@@ -2,7 +2,7 @@
   "name": "xpressengine-plugin/google_analytics",
   "description": "XpressEngine's plugin for bundle (XE)",
   "keywords": ["xpressengine bundle", "analytics"],
-  "version": "1.0.1",
+  "version": "1.0.2",
   "support": {
     "email": "developers@xpressengine.com"
   },
