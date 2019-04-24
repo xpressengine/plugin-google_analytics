@@ -7,6 +7,7 @@
 ga('create', '{{ $trackingId }}', '{{ $domain }}');
 ga('send', 'pageview');
 </script>
+@if($allClick)
 <script type="text/javascript">
 
     var _gaq = _gaq || [];
@@ -24,4 +25,4 @@ ga('send', 'pageview');
         });
     });
 </script>
-::
+@endif

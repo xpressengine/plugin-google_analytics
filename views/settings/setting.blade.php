@@ -32,6 +32,17 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group xe-btn-toggle">
+                                <label>
+                                    <b>{{ xe_trans('ga::allClickEvent') }}</b>
+                                <input type="checkbox" class="form-control" name="allClick" value="on" @if($setting->get('allClick')=='on') checked @endif>
+                                <span class="toggle"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

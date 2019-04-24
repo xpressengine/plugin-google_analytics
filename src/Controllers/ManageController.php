@@ -92,7 +92,11 @@ class ManageController extends Controller
             'profileId',
             'trackingId',
             'domain',
+            'allClick'
         ]);
+        if ($request->get('allClick') == null) {
+            $inputs['allClick']=null;
+        }
 
         XeDB::beginTransaction();
         try {

@@ -116,7 +116,7 @@ class Plugin extends AbstractPlugin
                     $setting = app('xe.ga')->getSetting();
                     if ($setting->get('trackingId')) {
                         XeFrontend::html('ga:tracking')->content(
-                            $this->getTrackingCode($setting->get('trackingId'), $setting->get('domain', 'auto'))
+                            $this->getTrackingCode($setting->get('trackingId'), $setting->get('domain', 'auto'),$setting->get('allClick'))
                         )->load();
                     }
                 }
@@ -134,9 +134,9 @@ class Plugin extends AbstractPlugin
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    private function getTrackingCode($trackingId, $domain = 'auto')
+    private function getTrackingCode($trackingId, $domain = 'auto', $allClick = null)
     {
-        return view('ga::tracking', compact('trackingId', 'domain'));
+        return view('ga::tracking', compact('trackingId', 'domain','allClick'));
     }
 
     /**
