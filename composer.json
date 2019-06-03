@@ -1,6 +1,6 @@
 {
   "name": "xpressengine-plugin/google_analytics",
-  "description": "XpressEngine's plugin for bundle (XE)",
+  "description": "구글 애널리틱스를 사용할 수 있는 플러그인 입니다.",
   "keywords": ["xpressengine bundle", "analytics"],
   "version": "1.0.2",
   "support": {
@@ -10,7 +10,7 @@
     {
       "name": "XE Developers",
       "email": "developers@xpressengine.com",
-      "homepage": "http://xpressengine.io",
+      "homepage": "https://store.xehub.io/plugins/google_analytics",
       "role": "Developer"
     }
   ],
