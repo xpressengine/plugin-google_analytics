@@ -2,7 +2,7 @@
   "name": "xpressengine-plugin/google_analytics",
   "description": "구글 애널리틱스를 사용할 수 있는 플러그인 입니다.",
   "keywords": ["xpressengine bundle", "analytics"],
-  "version": "1.0.2",
+  "version": "1.0.3",
   "support": {
     "email": "developers@xpressengine.com"
   },
@@ -14,7 +14,7 @@
       "role": "Developer"
     }
   ],
-  "license": "LGPL-2.1",
+  "license": "LGPL-3.0-or-later",
   "type": "xpressengine-plugin",
   "extra": {
     "xpressengine": {
